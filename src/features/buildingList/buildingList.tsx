@@ -1,9 +1,11 @@
 'use client'
 
 import {FC} from "react";
+import {useSearchParams} from "next/navigation";
 import {BuildingCard} from "@/entities/buildings/components/buildingCard/buildingCard";
 import {Building} from "@/entities/buildings/types";
 import {Rate} from "@/entities/rates/types";
+import {DefaultRate} from "@/entities/rates/consts";
 
 type BuildingListProps = {
     rates: Rate[],
@@ -16,7 +18,8 @@ export const BuildingList: FC<BuildingListProps> = ({
                                                         buildings,
                                                         userRateCode,
                                                     }) => {
-    const currentRate = rates?.find(rate => rate.code === userRateCode)
+    const searchParams = useSearchParams()
+    const currentRate = rates?.find(rate => rate.code === (searchParams.get('rate') as Rate['code'] ?? userRateCode ?? DefaultRate))
 
     return (
         <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
