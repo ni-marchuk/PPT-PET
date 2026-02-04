@@ -5,6 +5,7 @@ import {BuildingsWidget} from "@/widgets/buildings/buildings";
 import {BuildingsSkeleton} from "@/widgets/buildings/buildingsSkeleton";
 import {Container} from "@/shared/ui/container";
 
+export const dynamic = 'force-dynamic';
 
 export default async function Home() {
     return (

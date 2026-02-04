@@ -1,4 +1,4 @@
-import {NextRequest} from 'next/server';
+import {NextResponse, NextRequest} from 'next/server';
 import {Rate} from "@/entities/rates/types";
 
 const Rates: Rate[] = [
@@ -30,21 +30,17 @@ export async function GET(
     const searchParams = request.nextUrl.searchParams;
     const codes = searchParams.get('codes')?.split(',')
 
-    return new Promise(res => {
-        setTimeout(() => {
-            res(Response.json({
-                meta: {
-                    query: [
-                        {
-                            queryString: 'codes',
-                            fields: codes
-                        }
-                    ]
-                },
-                data: Rates.filter(r => codes?.includes(r.code)),
-                status: 'success',
-                error: null
-            }));
-        }, 0)
-    });
+    return NextResponse.json({
+        meta: {
+            query: [
+                {
+                    queryString: 'codes',
+                    fields: codes
+                }
+            ]
+        },
+        data: Rates.filter(r => codes?.includes(r.code)),
+        status: 'success',
+        error: null
+    })
 }

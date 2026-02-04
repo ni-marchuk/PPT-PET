@@ -1,4 +1,4 @@
-import {NextRequest} from 'next/server';
+import {NextResponse} from "next/server";
 import {Building} from "@/entities/buildings/types";
 import {emptyDefaultResponse} from "@/shared/constants/api";
 
@@ -91,13 +91,9 @@ export const buildingsMock: Building[] = [
 
 
 export async function GET() {
-    return new Promise(res => {
-        setTimeout(() => {
-            res(Response.json({
-                ...emptyDefaultResponse,
-                data: buildingsMock,
-                status: 'success',
-            }));
-        }, 0)
-    });
+    return NextResponse.json({
+        ...emptyDefaultResponse,
+        data: buildingsMock,
+        status: 'success',
+    })
 }
