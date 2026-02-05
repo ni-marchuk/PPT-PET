@@ -11,7 +11,7 @@ export default async function About() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 flex  justify-center p-4">
+        <div className="h-[calc(100vh_-_64px)] bg-gray-50 flex  justify-center p-4">
             <div className="max-w-md w-full bg-white shadow-lg rounded-xl p-6">
                 <h1 className="text-2xl font-bold mb-4 text-center">{fullName}</h1>
 
